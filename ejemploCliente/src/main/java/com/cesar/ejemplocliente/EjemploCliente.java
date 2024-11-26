@@ -30,23 +30,24 @@ public class EjemploCliente {
 
         try {
             socketServidor = new Socket(HOST, PUERTO);
-            
+
             System.out.println("Me he conectado a " + HOST + " en el puerto " + PUERTO);
-            PrintWriter salida = new PrintWriter(socketServidor.getOutputStream(),true);
-            BufferedReader entrada = new BufferedReader(new InputStreamReader(socketServidor.getInputStream()));
+
+            PrintWriter entradaServidor = new PrintWriter(socketServidor.getOutputStream(),true);
+            BufferedReader salidaServidor = new BufferedReader(new InputStreamReader(socketServidor.getInputStream()));
             
             
             teclado = new Scanner(new InputStreamReader(System.in));
 
-            System.out.println(entrada.readLine());
-            System.out.println(entrada.readLine());
+            System.out.println(salidaServidor.readLine());
+            System.out.println(salidaServidor.readLine());
 
             
             // Envio al servidor el texto introducido por teclado
-            salida.println(teclado.nextLine());
-            salida.println(teclado.nextLine());
+            entradaServidor.println(teclado.nextLine());
+            entradaServidor.println(teclado.nextLine());
             // Leo por pantalla la respuesta del servidor
-            System.out.println(entrada.readLine());
+            System.out.println(salidaServidor.readLine());
             
             socketServidor.close();
 
